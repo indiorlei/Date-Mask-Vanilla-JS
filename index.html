@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Date Mask Vanilla JS</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #121e36;
+        }
+
+        input {
+            background-color: #121e36;
+            padding: .5em;
+            border: 1px solid #1add5f;
+            color: #1add5f;
+            font-size: 2em;
+        }
+
+        input::placeholder {
+            color: #1add5f;
+            opacity: .2;
+        }
+
+        input:focus {
+            outline: none;
+            border-width: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" onkeyup="mascara(this, maskDate);" placeholder="Data" />
+
+
+    <script>
+        function mascara(o, f) {
+            v_obj = o
+            v_fun = f
+            setTimeout(function () {
+                v_obj.value = v_fun(v_obj.value)
+            }, 1)
+        }
+
+        function maskDate(v) {
+            v = v.replace(/\D/g, "");
+            v = v.replace(/(\d{2})(\d)/, "$1/$2");
+            v = v.replace(/(\d{2})(\d)/, "$1/$2");
+            v = v.replace(/(\d{2})(\d{2})$/, "$1$2");
+            v = v.slice(0, 10)
+            return v;
+        }
+    </script>
+</body>
+</html>
